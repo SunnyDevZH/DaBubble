@@ -1,0 +1,77 @@
+<form (ngSubmit)="onSubmit()" #contactForm="ngForm" ngNativeValidate>
+  <div id="overlay" class="overlay">
+    
+      
+      <div class="overlay-content">
+        <div class="channel-header">
+          <h1 style="margin: 0;">Leute hinzufügen</h1>
+          <span>
+            <img src="./assets/img/icon/close.svg" alt="" (click)="closeOverlay('overlay')">
+          </span>
+        </div>
+        <div class="checkbox-container">
+          <div class="radio-options">
+            <input
+            type="radio"
+            id="addAllMembers"            
+            [checked]="isAddAllMembersChecked"
+            (change)="toggleCheckbox('addAllMembers')"
+            />
+            <label for="addAllMembers">Alle Mitglieder hinzufügen</label>          
+          </div>
+          
+          <div class="radio-options">
+            <input
+            type="radio"
+            id="addSpecificMembers"
+            [checked]="isAddSpecificMembersChecked"
+            (change)="toggleCheckbox('addSpecificMembers')"
+            (change)="toggleInputField('addSpecificMembers')"
+            />
+            <label for="addSpecificMembers">Bestimmte Leute hinzufügen</label>
+          </div>
+            
+          <div *ngIf="showInputField" class="selected-users-container">
+            <div *ngFor="let user of filterUsers()" class="selected-user">
+              <img src="{{ user.avatar }}" />
+              <span>{{ user.displayName }}</span>              
+              <input (click)="toggleMember(user)" type="button" value="X">
+            </div>
+            <input type="text" id="input" class="input-field" name="selectedUser" placeholder="Leute suchen" (click)="toggleInputField('searchPeople')" (input)="onSearchInputChange($any($event.target).value)"
+            />
+          </div>
+          <div id="add-member" class="add-member" *ngIf="showAddMember">
+            <div class="scroll">
+              @for (user of this.firestore.getUsers(); track $index) {
+              <div *ngIf="matchesSearch(user)" class="channel-name pl-7" [id]="user.id" (click)="toggleMember(user)">
+                <img src="{{ user.avatar }}" />
+                <img
+                  *ngIf="user.isOnline"
+                  src="./assets/img/characters/online.svg"
+                  alt="Online"
+                  class="online-avatar"
+                />
+                <img
+                  *ngIf="!user.isOnline"
+                  src="./assets/img/characters/offline.svg"
+                  alt="Offline"
+                  class="offline-avatar"
+                />
+                <div class="space-between">
+                  <span
+                    >{{ user.displayName }}
+                    <span *ngIf="user.id === this.authService.activeUserId">(Du)</span>
+                  </span>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div class="btn-pos">
+          <button type="submit" class="add-button">Hinzufügen</button>
+        </div>
+      </div>
+    </div>
+
+</form>

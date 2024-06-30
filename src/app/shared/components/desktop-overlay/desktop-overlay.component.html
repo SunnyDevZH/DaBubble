@@ -1,0 +1,6 @@
+<div class="profile-wrapper" (click)="closeOverlay.emit()">
+  <div class="profile-overlay" (click)="$event.stopPropagation()">
+    <span (click)="openProfileCard(); $event.stopPropagation();">Profil</span>
+    <span (click)="logout(); $event.stopPropagation();">Log out</span>
+  </div>
+</div>

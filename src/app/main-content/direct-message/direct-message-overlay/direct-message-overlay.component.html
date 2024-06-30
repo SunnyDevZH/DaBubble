@@ -1,0 +1,47 @@
+<mat-card class="custom-dialog-container">
+  <div class="profil-title">
+    <span>Profil</span>
+    <div class="close-icon" (click)="closeDirectMessageOverlay()">
+      <img ngSrc="./assets/img/icon/close.png" class="default-img" height="24" width="24">
+      <img ngSrc="./assets/img/icon/close_color.png" class="hover-img" style="display: none" height="16" width="16">
+    </div>
+  </div>
+  <div class="img-container">
+    <img mat-card-image [src]="data.user.avatar" alt="{{ data.user.displayName }}">
+  </div>
+  <mat-card-content>
+    <div>
+      <div class="user">
+        <span>{{ data.user.displayName }}</span>
+        
+        @if(this.data.user.provider == 'email' && this.itemId === this.authService.activeUserId){
+          <div class="edit-icon" (click)="openEditProfileCard()">
+            <img ngSrc="./assets/img/icon/edit.png" class="default-img" height="24" width="24">
+            <img ngSrc="./assets/img/icon/edit_color.png" class="hover-img" style="display: none" height="24" width="24">
+          </div>
+        }
+        
+      </div>
+      <div class="status-character">
+        <img [src]="data.user.isOnline ? './assets/img/icon/online.png' : 'assets/img/icon/offline.png'" height="17"
+             width="16">
+        <span [class.online]="data.user.isOnline" [class.offline]="!data.user.isOnline">
+          {{ data.user.isOnline | onlineStatus }}
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <div>
+      <div class="email-field">
+        <img ngSrc="./assets/img/icon/mail.png" height="20" width="26">
+        <span>E-Mail-Adresse</span>
+      </div>
+      <span class="email-user cb">{{ data.user.email }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button class="btn-flat">Nachricht</button>
+  </mat-card-actions>
+</mat-card>
+

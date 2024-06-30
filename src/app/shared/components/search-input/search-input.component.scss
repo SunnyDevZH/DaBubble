@@ -1,0 +1,68 @@
+@import "../../../../styles/mixins.scss";
+
+.input-field {
+  width: 100%;  
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  box-sizing: content-box;
+
+  &:hover{
+    border: 1px solid #444DF2;
+  }
+
+  .input-field-design {
+    width: 100%;
+    height: 52px;
+    padding-left: 24px;
+    border-radius: 30px;
+    box-sizing: content-box;
+    @include fontBold($fw: 400, $fs: 0.944rem, $lh: 32px, $ta: left, $c: #686868);
+
+    &::placeholder {
+      @include fontBold($fw: 400, $fs: 0.944rem, $lh: 32px, $ta: left, $c: #686868);
+    }
+  }
+
+  .input-background-icon {
+    background-image: url('/assets/img/icon/search.png');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding-right: 50px;
+  }
+}
+/* search-input.component.scss */
+.input-field {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: 1.25em;
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2)
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background: #f1f1f1;
+}

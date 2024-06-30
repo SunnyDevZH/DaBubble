@@ -1,0 +1,213 @@
+@use "@material/card";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+@use "@material/dialog";
+
+@include dialog.core-styles;
+@include textfield.core-styles;
+@include card.core-styles;
+@import "../../../styles/mixins.scss";
+
+.container {
+  @include dFlex($jc: flex-start, $ai: normal, $fd: column, $g: 0);
+  height: 100vh;
+  width: 100%;
+}
+
+.loading-animation,
+.content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #ffffff;
+  padding: 24px 16px 12px 16px;
+}
+
+app-progress-spinner{
+  height: 100%;  
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+}
+
+.channel-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mdc-card {
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 20px);
+  @include shadow-bottom();
+  height: 78px;
+  padding: 10px 16px;
+
+  .channel-box {
+    @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 15px);
+  }
+}
+
+.online-avatar,
+.offline-avatar {
+  position: absolute;
+  bottom: 12px;
+  left: 52px;
+  width: 14px;
+  height: 14px;
+}
+
+.channel-info {
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 24px);
+  width: 100%;
+  padding: 0 16px 24px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.profile {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.profile-box {
+  @include dFlex($jc: flex-start, $ai: flex-end, $fd: row, $g: 10px);
+  .profile {
+    height: 88px;
+    width: 88px;
+  }
+}
+.profile-box-info {
+  font-family: Nunito;
+  font-size: 1.111rem;
+  font-weight: 400;
+  line-height: 27.28px;
+  text-align: left;
+  color: #686868;
+}
+
+.text-sender {
+  font-weight: 700;
+}
+
+.text-recipient{
+  color: #535AF1;
+}
+
+.icons {
+  position: absolute;
+  top: 100px;
+  left: 40px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+.vertical-line {
+  width: 1px;
+  height: 25px;
+  background-color: blue;
+}
+
+.send {
+  position: absolute;
+  top: 100px;
+  left: 310px;
+  cursor: pointer;
+}
+
+.display-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.members {
+  margin: 20px;
+}
+
+.add-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.overlay-content {
+  background-color: white;
+  width: 75%;
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-input {
+  border: 1px solid blue;
+  border-radius: 20px;
+  padding: 8px;
+  margin-top: 10px;
+  width: 94%;
+  margin-bottom: 10px;
+}
+
+.btn-pos {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.overlay-profil {
+  background-color: white;
+  width: 89%;
+  max-width: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+@media (min-width: 768px) {
+  .container{
+    height: calc(100vh - 200px);
+    
+  }
+}
+
+//DESKTOP/////
+
+@media (min-width: 450px) {
+  .container app-header-mobile {
+    display: none;
+  }
+  .mdc-card{
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.08);
+  }
+}

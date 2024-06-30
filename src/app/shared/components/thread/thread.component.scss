@@ -1,0 +1,236 @@
+@use "@material/card";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+@use "@material/dialog";
+
+@include dialog.core-styles;
+@include textfield.core-styles;
+@include card.core-styles;
+@import "../../../../styles/mixins.scss";
+
+.container {
+  @include dFlex($jc: flex-start, $ai: normal, $fd: column, $g: 0);
+  height: 100vh;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #ffffff;
+  padding: 24px 16px 12px 16px;
+
+  .timeSeperator {
+    position: relative;
+    @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 20px);
+    margin: 14px 0;    
+  }
+  
+  .timeSeperator span {
+    background-color: white;
+    height: 25px;
+    font-family: "Nunito";
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 24.55px;
+    color: #ADB0D9;
+  }
+
+  .line {
+    position: relative;    
+    width: auto;
+    flex: 1;
+    overflow-x: hidden;
+  }
+
+}
+
+.mdc-card {
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 15px);
+  @include shadow-bottom();
+  height: 60px;
+  padding: 0 16px;
+
+  .channel-box {
+    @include dFlex($jc: flex-start, $ai: normal, $fd: row, $g: 15px);
+  }
+}
+
+.menu-icon-hover{
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+  height: 34px;
+  width: 34px;
+
+  img{
+    height: 24px;
+    width: 24px;
+  }
+
+  &:hover{
+    background: #eceefe;
+    border-radius: 50px;
+  }
+}
+
+h1 {
+  @include dFlex($jc: flex-start, $ai: normal, $fd: row, $g: 10px);
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding: 2px 0;
+}
+
+.channel-info {
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 15px);
+  position: absolute;
+  bottom: 180px;
+}
+
+.no-margin {
+  margin: 0;
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 5px);
+
+  .subtitle {
+    color: #535af1;
+    font-family: Nunito;
+    font-size: 0.778rem;
+    font-weight: 400;
+    line-height: 19.1px;
+    text-align: left;
+  }
+}
+
+.members {
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 16px);
+  padding: 20px;
+}
+
+.add-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.display-flex {
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 0);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.overlay-content {
+  @include dFlex($jc: flex-start, $ai: space-between, $fd: column, $g: 20px);
+  background-color: white;
+  width: 75%;
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 20px;
+  border-top-right-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-profil {
+  background-color: white;
+  width: 89%;
+  max-width: 600px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-input {
+  border: 1px solid #adb0d9;
+  border-radius: 30px;
+  width: calc(100% - 40px);
+  padding: 15px 20px;
+}
+
+.add-button {
+  background-color: rgb(104, 104, 104);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.btn-pos {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.profil {
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 15px);
+  padding: 4px 20px;
+  position: relative;
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24.55px;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  .online-avatar,
+  .offline-avatar {
+    position: absolute;
+    bottom: 0;
+    left: 56px;
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover,
+  &:active {
+    background-color: #eceefe;
+    border-radius: 30px;
+    font-weight: 700;
+    color: #535af1;
+  }
+}
+
+.height {
+  height: 50px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    height: calc(100vh - 200px);
+  }
+}
+
+//DESKTOP/////
+
+@media (min-width: 800px) {
+  .container app-header-mobile {
+    display: none;
+  }
+
+  .mdc-card {
+    box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.08);
+  }
+}

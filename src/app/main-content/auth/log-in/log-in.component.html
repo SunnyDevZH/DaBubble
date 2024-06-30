@@ -1,0 +1,135 @@
+<div class="intro"
+[ngClass]="{'intro-start': playIntroAnimation}"
+></div>
+
+<div class="content">  
+    <div class="logo-animated"
+  [ngClass]="{'logo-animated-start': playIntroAnimation}"
+  >
+    <img src="./assets/img/auth/logo.svg" />
+    <span class="logo-name-animated"
+    [ngClass]="{'logo-name-animated-start': playIntroAnimation}"
+    [ngStyle]="{ 'right': isDesktop ? 'unset' : '40%' }"
+    >DABubble</span>
+  </div>
+
+  <mat-card>
+        <mat-card-header>
+      <div class="headline">
+        <mat-card-title>Anmeldung</mat-card-title>
+        <mat-card-subtitle>
+          Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit
+          verwendest.
+        </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      @if(errorMessage){ 
+        <div class="required">
+        @switch (errorMessage) { @case
+        ("auth/email-already-in-use") { auth/email-already-in-use } @case
+        ("auth/user-disabled") { Konto inaktiv } @default {
+        Ungültige Anmeldedaten } } 
+      </div>
+    }
+
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm" ngNativeValidate>
+        <input type="submit" hidden />
+        <div class="form-box">
+          <div class="input-with-icon">
+            <input
+              type="email"
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="contactData.email"              
+              pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
+              placeholder="beispielname@email.com"
+              required
+              autocomplete="email"
+            />
+            <img
+              [src]="
+                email.valid || email.touched
+                  ? './assets/img/auth/mail_black.svg'
+                  : './assets/img/auth/mail.svg'
+              "
+              alt="icon"
+            />
+          </div>
+          <span class="required">
+            @if (!email.valid && email.touched && !email.disabled){ *Diese
+            E-Mail-Adresse ist leider ungültig. }
+          </span>
+        </div>
+
+        <div class="form-box">
+          <div class="input-with-icon">
+            <input
+              type="password"
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="contactData.password"
+              minlength="6"
+              placeholder="Passwort"
+              required
+              autocomplete="current-password"
+            />
+            <img src="./assets/img/auth/lock.svg" />
+          </div>
+          <span class="required">
+            @if (!password.valid && password.touched && !password.disabled){
+            Falsches Passwort. Bitte noch einmal versuchen. }
+          </span>
+        </div>
+
+        <span
+          class="fontThin pointer"
+          routerLink="/send-email"
+          routerLinkActive="router-link-active"
+          >Passwort vergessen?</span
+        >
+
+        <div class="seperator">
+          <img class="line" src="./assets/img/auth/line.svg" alt="" />
+          <span>ODER</span>
+        </div>
+
+        <div class="form-box">          
+          <div class="google pointer" (click)="signInWithGoogleRedirect()">
+            <img
+              class="google-img"
+              src="./assets/img/auth/google.svg"
+              alt="icon"
+            />
+            <span>Anmelden mit Google</span>
+          </div>
+          <span class="required"></span>
+        </div>
+
+        <div class="buttons">
+          <button class="btn-primary pointer" type="submit">Anmelden</button>
+          <button class="btn-secondary pointer" type="button" (click)="anonymousLogin()">Gäste-Login</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  @if(isDesktop){
+    <app-desktop-footer></app-desktop-footer>
+    <div class="newDABubble">
+      <span>Neu bei DABubble?</span>
+      <span class="btn-secondary pointer" routerLink="/register" routerLinkActive="router-link-active">Konto erstellen</span>
+    </div>
+  }@else {
+    <div class="buttons" style="flex-direction: column">
+      <span>Neu bei DABubble?</span>
+      <button
+      class="btn-secondary pointer"
+      routerLink="/register"
+      routerLinkActive="router-link-active"
+      >
+      Konto erstellen
+    </button>
+  </div>
+}
+</div>

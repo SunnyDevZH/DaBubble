@@ -1,0 +1,38 @@
+<div
+  class="content-header-mobile bg-c"
+  (mouseenter)="currentImage = hoverImage"
+  (mouseleave)="currentImage = defaultImage"
+  [ngStyle]="{ 'justify-content': isDesktop ? 'flex-end' : 'space-around' }"
+  (click)="openOverlay()"
+>
+  @if (isDesktop) {
+    {{ user.displayName }}
+  } @else {
+    @if (!alternativeHeader) {
+
+      <div class="logo-header">
+        <img src="./assets/img/mobile-logo.svg"/>
+        <span class="logo-name">DABubble</span>
+      </div>
+
+    } @else {
+      <div class="alternative-header">
+        <img
+          [src]="
+        hoverBack
+          ? './assets/img/icon/arrow_back_color.svg'
+          : './assets/img/icon/arrow_back.svg'
+      "
+          (click)="onBack()"
+          (mouseenter)="hoverBack = true"
+          (mouseleave)="hoverBack = false"
+        />
+        <img src="./assets/img/icon/Property 1=Default (1).svg"/>
+      </div>
+    }
+  }
+
+  <img class="header-img" (click)="openBottomSheet()" src="{{ user.avatar }}"/>
+  <img *ngIf="isDesktop" [src]="currentImage"/>
+</div>
+<app-desktop-overlay *ngIf="overlayVisible" [user]="user" (closeOverlay)="closeOverlay()"></app-desktop-overlay>

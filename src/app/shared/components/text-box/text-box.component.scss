@@ -1,0 +1,87 @@
+@import "../../../../styles/mixins.scss";
+
+.footer {
+  min-height: 175px;
+  background-color: #ffffff;
+  @include dFlex($jc: flex-start, $ai: center, $fd: column, $g: 0);
+
+  form {
+    @include dFlex($jc: center, $ai: flex-end, $fd: column, $g: 0);
+    width: 98%;
+    margin: 0 16px;
+  }
+}
+
+.message-box {
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 0);
+  min-height: 137px;
+  width: 100%;
+  border: 1px solid #adb0d9;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px;
+
+  &:hover {
+    border: 1px solid #444df2;
+  }
+}
+
+.text-content {
+  width: 100%;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  min-height: 68px;
+  box-sizing: border-box;
+  padding-block: 0;
+  padding-inline: 0;
+  border-style: none;
+  outline: none !important;
+  font-family: "Nunito";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24.55px;
+  resize: none;
+  overflow: hidden;
+}
+
+.actions {
+  width: 100%;
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 15px);
+}
+
+.other-content {
+  height: 28px;
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 4px);
+  .vertical-line {
+    width: 1px;
+    height: 25px;
+    background-color: #adb0d9;
+  }
+
+  label {
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  a {
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    &:hover {
+      background-color: #eceefe;
+    }
+  }
+
+  .preview {
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
+  }
+}

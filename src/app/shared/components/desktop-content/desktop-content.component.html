@@ -1,0 +1,87 @@
+<div class="content">
+  <button class="workspace-menu pointer" 
+  [ngStyle]="{'left': isCollapsed ? '-119px' : '-131px' }"
+  (click)="toggleDiv()"
+  (mouseenter)="hovered = true"
+  (mouseleave)="deleteHovered()"
+  >
+  
+    @if(isCollapsed){
+      <p>Workspace-Menü öffnen</p>
+      @if(hovered){
+        <img src="./assets/img/icon/menu_open_hover.svg" alt="">
+      } @else {
+        <img src="./assets/img/icon/menu_open.svg" alt="">
+      }
+    }
+    @else{
+      <p>Workspace-Menü schließen</p>
+      @if(hovered){
+        <img src="./assets/img/icon/menu_close_hover.svg" alt="">
+      } @else {
+        <img src="./assets/img/icon/menu_close.svg" alt="">
+      }
+    }
+  </button>
+
+  <mat-card class="menu" id="toggleDiv" [ngStyle]="{'display': isCollapsed ? 'none' : 'flex' }">
+    <mat-card-content class="test">
+      <div class="logo">
+        <div>
+          <img class="workspace-logo" src="./assets/img/icon/workspace_logo.svg" alt="" >
+          <span>Devspace</span>
+        </div>
+        <img class="workspace-action-button" src="./assets/img/icon/edit_square.svg" alt="" (click)="openNewMessage()">
+      </div>      
+      <app-main-content [isDesktop]="true"></app-main-content>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="workspace">
+    <mat-card-content>
+      @if (this.router.url === '/main') {
+
+        <div class="welcome">
+          <div class="headline">Willkommen bei der DABubble</div>
+          <div class="description">
+            <p>Dies ist eine Chat-Messenger Applikation im Stile von Slack zur Kommunikation im Team</p>
+            <p>Wähle einen Channel oder einen Chat</p>
+            <p>Viel Spass beim Ausprobieren</p>
+          </div>
+          <p class="headline">Sascha, Stefan und Yannick</p>
+          
+          <div class="tools">
+            <div>
+              <img src="./assets/img/icon/angular.svg" alt="">
+              <span>Angular</span>
+            </div>
+            <div>
+              <img src="./assets/img/icon/typescript.svg" alt="">
+              <span>TypeScript</span>
+            </div>
+            <div>
+              <img src="./assets/img/icon/firebase.svg" alt="">
+              <span>Firebase</span>
+            </div>
+            <div>
+              <img src="./assets/img/icon/material.svg" alt="">
+              <span>Material design</span>
+            </div>            
+          </div>
+          
+        </div>
+          
+      }@else {
+        <router-outlet></router-outlet>
+      }
+    </mat-card-content>
+  </mat-card>
+
+  @if(this.matchMedia.showThread === true){
+    <mat-card class="thread">
+      <mat-card-content>
+        <app-thread></app-thread>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

@@ -1,0 +1,106 @@
+@import "../../styles/mixins.scss";
+
+.content {
+  position: relative;
+  padding: 0 16px;
+  height: 100vh;
+  @include dFlex($jc: center, $ai: center, $fd: column, $g: 30px);
+
+  .logo {
+    height: 56px;
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 12.8px);
+
+    img {
+      height: 56px;
+      width: 56px;
+    }
+
+    .logo-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+  }
+}
+
+mat-card {
+  position: relative;
+  max-width: 60vw;
+  height: 70vh !important;
+  overflow: auto;
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 20px);
+  @include card($w: 100%, $h: auto, $br: 30px, $ptb: 48px, $plr: 56px);
+
+  .mat-mdc-card-header {
+    width: 100%;
+    @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 15px);
+    padding: 0;
+    margin-top: -8px;
+    // overflow: scroll;
+
+    mat-card-title {
+      @include fontBold(
+        $fw: 700,
+        $fs: 46px,
+        $lh: 55.2px,
+        $ta: center,
+        $c: #444df2
+      );
+    }
+
+    .test {
+      @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 15px);
+      font-family: "Nunito", serif;
+      font-weight: 400;
+      font-size: 1.111rem;
+      line-height: 24px;
+      text-align: left;
+      color: #000;
+      display: contents;
+    }
+  }
+  .mat-mdc-card-content{
+    padding: 0;
+  }
+}
+
+mat-card-title {
+  @include fontBold(
+    $fw: 700,
+    $fs: 32px,
+    $lh: 38.4px,
+    $ta: center,
+    $c: #444df2
+    );
+  display: flex;
+}
+
+/* mat-card-subtitle {
+  font-family: "Nunito", serif;
+  font-weight: 400;
+  font-size: 1.111rem;
+  line-height: 24px;
+  text-align: center;
+  color: #000;
+  display: contents;
+} */
+
+.menu-hover{
+  width: 40px;
+  height: 40px;
+  &:hover {
+    background: #eceefe;
+    border-radius: 50px;
+  }
+}
+
+/* app.component.scss */
+.content {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+  .content {
+  scrollbar-width: thin;
+  scrollbar-color: #797EF3 #fff;
+}
+

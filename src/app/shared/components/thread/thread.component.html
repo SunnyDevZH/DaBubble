@@ -1,0 +1,49 @@
+<div class="container">
+  <app-header-mobile [isDesktop]="false"></app-header-mobile>
+  <div class="mdc-card">
+    <div class="channel-box pointer">
+      <h1 class="no-margin">
+        <span>Thread</span>
+        <span class="subtitle">#</span>
+        <span class="subtitle">{{ this.matchMedia.channelName }}</span>
+      </h1>
+    </div>
+    <div class="menu-icon-hover pointer">
+      <img        
+        (click)="closeThread()"
+        src="./assets/img/icon/close.svg"
+        alt=""
+      />
+    </div>
+  </div>
+  <div class="content">
+    <div class="message-content" #threadContent style="overflow-y: scroll; height: 100%;">
+      <app-conversation
+        [channelMessage]="this.firestore.channelMessage"
+        [isChannel]="false"
+        [isThread]="false"
+        [hideCompleteReactionBar]="this.matchMedia.checkIsDesktop()"
+        [hideThreadInfos]="true"
+      ></app-conversation>
+    <div class="timeSeperator">
+      <span>
+        @if(this.firestore.channelMessage.threads == 0){
+          Keine Antworten
+        }@else if(this.firestore.channelMessage.threads == 1){
+          {{ this.firestore.channelMessage.threads }} Antwort
+        }@else {
+          {{ this.firestore.channelMessage.threads }} Antworten
+        }
+      </span>
+      <img class="line" src="./assets/img/auth/line.svg" alt="" />
+    </div>
+    
+    @if (this.firestore.channelThreads.length !== 0) {
+      @for (channelMessage of this.firestore.channelThreads; let i = $index; track channelMessage.id) {
+        <app-conversation [channelMessage]="channelMessage" [isChannel]="false" [isThread]="true"></app-conversation>
+      }
+    }
+    </div>
+  </div>
+  <app-text-box style="margin-top: 10px;" [textBoxData]="textBoxData" [isThread]="true"></app-text-box>
+</div>

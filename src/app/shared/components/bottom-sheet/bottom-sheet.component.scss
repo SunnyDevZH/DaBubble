@@ -1,0 +1,31 @@
+@import "../../../../styles/mixins.scss";
+
+.mat-bottom-sheet-container {
+  border-top-left-radius: 23px;
+}
+.img-rectangle {
+  padding-top: 16px ;
+  padding-bottom: 32px;
+  @include dFlex($jc: center, $ai: center);
+}
+.profil-container {
+  @include dFlex($jc: unset, $ai: center, $fd: row, $g: 15px);
+  @include fontBold($fw: 600, $fs: 1.111rem, $lh: 27.28px, $ta: center, $c: #000000);
+  width: 154px;
+  padding: 10px 30px;
+  border-radius: 100px;
+
+  &:hover {
+    background-color: #ECEEFE;
+  }
+}
+
+.img-profil {
+  //width: 30px;
+  //height: 30px;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 15px);
+  font-size: 1.556rem;
+}
+
+
+

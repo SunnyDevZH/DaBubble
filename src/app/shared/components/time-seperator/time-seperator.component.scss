@@ -1,0 +1,27 @@
+@import "../../../../styles/mixins.scss";
+
+.timeSeperator {
+  position: relative;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+  margin: 28px 0;
+  width: 100%;
+}
+
+.timeSeperator span {    
+  position: absolute;
+  top: -17px;
+  background-color: white;
+  text-align: center;
+  padding: 5px 15px;
+  height: 25px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24.55px;
+  border: 1px solid #adb0d9;
+  border-radius: 30px;
+}
+
+.line {
+  width: 100%;
+}

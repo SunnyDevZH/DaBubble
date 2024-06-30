@@ -1,0 +1,362 @@
+@import "../../../../styles/mixins.scss";
+
+.timeSeperator {
+  position: relative;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+  margin: 28px 0;
+}
+
+.timeSeperator span {
+  position: absolute;
+  top: -17px;
+  background-color: white;
+  text-align: center;
+  padding: 5px 15px;
+  height: 25px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24.55px;
+  border: 1px solid #adb0d9;
+  border-radius: 30px;
+}
+
+.line {
+  width: 100%;
+}
+
+.content-message {
+  position: relative;
+  padding: 10px 0 24px 0;
+  @include dFlex($jc: flex-start, $ai: flex-start, $fd: row, $g: 0);
+
+  .avatar {
+    padding: 0 8px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      object-fit: cover;
+      border: 2px solid #eceefe;
+    }
+  }
+
+  .main {
+    width: 100%;
+    position: relative;
+    @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 8px);
+    padding: 0 8px;
+
+    .message-content {
+      width: 100%;
+      @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 8px);
+
+      .creator-infos {
+        @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 20px);
+
+        .creator {
+          font-family: "Nunito", sans-serif;
+          font-weight: 700;
+          font-size: 1rem;
+          line-height: 24.55px;
+          color: #000000;
+        }
+
+        .time {
+          font-family: "Nunito", sans-serif;
+          font-weight: 400;
+          font-size: 0.778rem;
+          line-height: 19.1px;
+          color: #686868;
+        }
+      }
+
+      form {
+        width: 100%;
+
+        .edit-bar {
+          .buttons {
+            @include dFlex($jc: center, $ai: center, $fd: row, $g: 24px);
+            .btn-primary {
+              @include btn(
+                $h: 49px,
+                $br: 25px,
+                $ptb: 12px,
+                $plr: 25px,
+                $c: #fff,
+                $bgc: #444df2,
+                $bgch: #797ef3,
+                $ch: #fff,
+                $fbc: #444df2
+              );
+            }
+            .btn-secondary {
+              @include btn(
+                $h: 49px,
+                $br: 25px,
+                $ptb: 12px,
+                $plr: 25px,
+                $c: #444df2,
+                $bgc: transparent,
+                $bgch: #535af1,
+                $ch: #fff,
+                $fbc: #444df2
+              );
+            }
+          }
+        }
+      }
+
+      textarea {
+        overflow: hidden;
+        resize: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .message {
+        background-color: #eceefe;
+        border-color: transparent;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+        font-size: 0.944rem;
+        line-height: 23.19px;
+        color: #000000;
+      }
+
+      .edit-message {
+        background-color: #ffffff !important;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+        font-size: 0.944rem;
+        line-height: 23.19px;
+        color: #686868 !important;
+        border: 1px solid #adb0d9 !important;
+        border-radius: 20px !important;
+        outline: unset;
+      }
+
+      .attachment-list {
+        @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 8px);
+        flex-wrap: wrap;
+        padding: 8px;
+
+        a {
+          @include dFlex($jc: flex-start, $ai: flex-start, $fd: column, $g: 0);
+          font-family: "Nunito", sans-serif;
+          font-weight: 400;
+          font-size: 0.7rem;
+          line-height: 24.55px;
+          color: #444df2;
+          text-decoration: none;
+
+          &:hover {
+            font-weight: 600;
+          }
+        }
+        &:hover {
+          box-shadow: 0px 6px 14px 0px #00000033;
+        }
+      }
+
+      .attachment {
+        height: 60px;
+        width: 60px;
+        object-fit: contain;
+      }
+
+      .text-white {
+        color: #ffffff;
+      }
+
+      .thread-infos {
+        @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 20px);
+
+        .answer {
+          font-family: "Nunito", sans-serif;
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 24.55px;
+          color: #444df2;
+          text-decoration: none;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+
+        .last-thread {
+          font-family: "Nunito", sans-serif;
+          font-weight: 400;
+          font-size: 0.778rem;
+          line-height: 19.1px;
+          color: #686868;
+        }
+      }
+    }
+
+    .reaction-infos {
+      @include dFlex($jc: flex-start, $ai: flex-start, $fd: row, $g: 8px);
+
+      .new-reaction {
+        &:hover {
+          background-color: #ffffff;
+          border-radius: 20px;
+        }
+      }
+
+      .reactions {
+        @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 8px);
+        flex-wrap: wrap;
+        position: relative;
+
+        .reaction-group {
+          position: relative;
+          @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 2px);
+          border-radius: 20px;
+          background-color: #ffffff;
+          padding: 5px 10px;
+          border: 1px solid #adb0d9;
+
+          .reaction-icon {
+            height: 24px;
+            width: 24px;
+            align-items: center;
+            display: flex;
+            font-size: 1rem;
+          }
+
+          .reaction-count {
+            font-family: "Nunito", serif;
+            font-weight: 400;
+            font-size: 0.889rem;
+            line-height: 21.82px;
+            color: #000000;
+          }
+        }
+
+        .bubble {
+          position: absolute;
+          touch-action: manipulation;
+          @include dFlex($jc: center, $ai: center, $fd: column, $g: 5px);
+          color: #ffffff;
+          bottom: 36px;
+          max-width: 158px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          box-sizing: border-box;
+          border-radius: 30px 30px 30px 0px;
+          padding: 15px 10px;
+          background-color: #444df2;
+          font-family: Nunito;
+          z-index: 9;
+
+          .bubble-icon {
+            height: 30px;
+            width: 30px;
+            @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+            font-size: 1rem;
+          }
+
+          .bubble-userlist{
+            @include dFlex($jc: center, $ai: center, $fd: column, $g: 0);
+            .bubble-user {
+              @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+              font-weight: 700;
+            }
+          }
+
+          .bubble-text {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 21.82px;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background-color: #eceefe;
+  }
+}
+
+.message {
+  max-width: 350px;
+}
+
+.reactionBar {
+  background-color: #ffffff;
+  position: absolute;
+  top: -28px;
+  height: 42px;
+  max-width: 255px;
+  border: 1px solid #adb0d9;
+  border-radius: 25px 25px 0px 25px;
+  padding: 3px 15px;
+  z-index: 9;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 5px);
+  animation: slideFromRight10percent 50ms ease-in 10ms forwards;
+  transform: translateX(10%);
+  opacity: 1;
+
+  .reaction-icon-small {
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    &:hover {
+      background-color: #eceefe;
+    }
+    img {
+      height: 24px;
+      width: 24px;
+      object-fit: cover;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    border-radius: 20px;
+    &:hover {
+      background-color: #eceefe;
+    }
+  }
+}
+
+.editMessageButton {
+  background-color: #ffffff;
+  position: absolute;
+  top: 24px;
+  left: 30px;
+  height: 42px;
+  width: 308px;
+  border: 1px solid transparent;
+  border-radius: 0px 30px 30px 30px;
+  padding: 10px 20px;
+  z-index: 9;
+  box-shadow: 0px 6px 14px 0px #00000033;
+  font-family: Nunito, sans-serif;
+  font-size: 0.994rem;
+  font-weight: 600;
+  line-height: 32.74px;
+  text-align: left;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+
+  span {
+    padding: 4px 20px;
+    border-radius: 20px;
+    &:hover {
+      background-color: #eceefe;
+      font-weight: 700;
+      color: #535af1;
+    }
+  }
+}

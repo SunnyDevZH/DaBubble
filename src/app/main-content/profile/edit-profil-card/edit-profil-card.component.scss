@@ -1,0 +1,213 @@
+@import "../../../../styles/mixins.scss";
+
+.custom-dialog-container {
+    border-radius: 30px;
+    padding: 45px 20px;
+    gap: 38px;
+    border: 10px solid transparent;
+}
+
+.profil-title {
+    @include dFlex($jc: space-between, $ai: center);
+
+    span {
+        @include fontBold(
+            $fw: 700,
+            $fs: 1.333rem,
+            $lh: 32.74px,
+            $ta: center,
+            $c: #000000
+        );
+    }
+
+    .close-icon:hover {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        @include bg-c(#eceefe);
+        @include dFlex($jc: center, $ai: center);
+
+        .default-img {
+            display: none;
+        }
+
+        .hover-img {
+            display: block !important;
+        }
+    }
+}
+
+.profile-img-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 200px;    
+}
+
+.user {
+    @include fontBold(
+        $fw: 700,
+        $fs: 1.778rem,
+        $lh: 43.65px,
+        $ta: center,
+        $c: #000000
+    );
+    @include dFlex($jc: space-between, $ai: center);
+
+    
+}
+
+.edit-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.status-character {
+    width: 88px;
+    @include dFlex($jc: unset, $ai: center, $g: 15px);
+
+    span {
+        @include fontBold(
+            $fw: 400,
+            $fs: 1.111rem,
+            $lh: 27.28px,
+            $ta: center,
+            $c: #92c83e
+        );
+    }
+}
+
+.email-field {
+    @include dFlex($jc: unset, $ai: center, $g: 20px);
+    padding-bottom: 7px;
+
+    span {
+        @include fontBold(
+            $fw: 700,
+            $fs: 1.111rem,
+            $lh: 27.28px,
+            $ta: center,
+            $c: #000000
+        );
+    }
+}
+
+.email-user {
+    @include fontBold(
+        $fw: 400,
+        $fs: 1rem,
+        $lh: 24.55px,
+        $ta: center,
+        $c: #000000
+    );
+    left: 46px;
+    position: relative;
+}
+
+.input-field {
+    width: 100%;
+
+    .input-field-design {
+        border: 1px solid #adb0d9;
+        border-radius: 30px;
+        height: 52px;
+        padding-left: 15px;
+        @include fontBold(
+            $fw: 500,
+            $fs: 1rem,
+            $lh: 21.6px,
+            $ta: left,
+            $c: #686868
+        );
+
+        &::placeholder {
+            @include fontBold(
+                $fw: 500,
+                $fs: 1rem,
+                $lh: 21.6px,
+                $ta: left,
+                $c: #686868
+            );
+        }
+    }
+}
+
+.btn-position {
+    @include dFlex($jc: center, $ai: center, $g: 32px);
+    width: 100%;
+
+    .btn-stroked {
+        border-radius: 50px;
+        border: 1px solid #797ef3;
+        padding: 12px 25px;
+        height: 49px;
+        background: #ffffff;
+        @include fontBold(
+            $fw: 700,
+            $fs: 1rem,
+            $lh: 24.55px,
+            $ta: left,
+            $c: #444df2
+        );
+    }
+
+    .btn-flat {
+        background: #444df2;
+        border-radius: 50px;
+        padding: 12px 25px;
+        height: 49px;
+        @include fontBold(
+            $fw: 700,
+            $fs: 1rem,
+            $lh: 24.55px,
+            $ta: left,
+            $c: #ffffff
+        );
+    }
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+label {
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+    position: relative;
+    border-radius: 50%;
+    border: 2px solid #eceefe;
+    &:hover{
+        border: 2px solid #797ef3;
+    }
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .avatar-list{          
+    width: 100%;
+    height: 56px;
+    @include dFlex($jc: space-between, $ai: flex-start, $fd: row, $g: 4px);
+
+    .selection {            
+      width: 56px;
+      height: 56px;
+
+      img {
+        width: 48px; 
+        height: 48px;
+        border-radius: 41px;
+        border: 4px solid transparent;
+
+        &:hover{
+          border: 4px solid #eceefe;
+        }
+      }
+    }
+  }

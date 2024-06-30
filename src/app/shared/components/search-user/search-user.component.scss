@@ -1,0 +1,185 @@
+@import "../../../../styles/mixins.scss";
+
+.selected-users-container {
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 8px);
+  flex-wrap: wrap;
+  padding: 8px;
+}
+
+.input-field {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 40px;
+  border: 1px solid #adb0d9;
+}
+
+.selected-user span {
+  margin-right: 8px;
+}
+
+.add-button {
+  background-color: rgb(68, 77, 242);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 15px;
+  margin: 20px;
+  width: 150px;
+  cursor: pointer;
+}
+
+.selected-user button,
+input[type="button"] {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #666;
+  font-size: 0.667rem;
+  cursor: pointer;
+}
+
+.overlay-content {
+  background-color: white;
+  width: 75%;
+  max-width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  .checkbox-container {
+    margin-top: 20px;
+    @include dFlex($jc: center, $ai: flex-start, $fd: column, $g: 0);
+
+    .radio-options {
+      @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 8px);
+
+      input[type="radio"] {
+        cursor: pointer;
+        margin: 0;
+      }
+
+      label {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.selected-user {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 4px);
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 16px;
+
+  &:hover {
+    background-color: #eceefe;
+    color: #535af1;
+    font-weight: 700;
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
+.scroll {
+  overflow: scroll;
+  height: 100px;
+}
+
+.add-member {
+  position: relative;
+  height: 100px;
+  width: 90%;
+  margin-left: 20px;
+
+  // looks
+  background-color: #ffffff;
+  padding: 10px;
+  font-size: 1.25em;
+  border-radius: 1rem;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3),
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+
+.channel-header {
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 0);
+  span {
+    @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    &:hover {
+      background-color: #eceefe;
+      border-radius: 50%;
+    }
+  }
+}
+
+.channel-name {
+  padding: 10px;
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    background-color: #eceefe;
+    border-radius: 16px;
+  }
+
+  span {
+    @include fontBold(
+      $fw: 400,
+      $fs: 17px,
+      $lh: 23.19px,
+      $ta: center,
+      $c: #000000
+    );
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  .online-avatar,
+  .offline-avatar {
+    position: absolute;
+    bottom: 8px;
+    left: 48px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.pl-7 {
+  padding-left: 23px;
+}
+
+.space-between {
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 0);
+  width: 100%;
+
+  img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+.btn-pos {
+  @include dFlex($jc: flex-end, $ai: center, $fd: row, $g: 0);
+}

@@ -1,0 +1,143 @@
+<div class="footer">
+  <form (ngSubmit)="onSubmit()" #messageForm="ngForm" ngNativeValidate>
+    <div class="message-box">
+      <div class="text-content">
+        <textarea
+          type="text"
+          minlength="1"
+          placeholder="{{ this.textBoxData.placeholder }} {{
+            this.textBoxData.channelName
+          }}"
+          name="messageText"
+          #messageText
+          [(ngModel)]="textBoxData.messageText"
+          required
+          (keydown.enter)="submitForm($event)"
+          (input)="adjustTextareaHeight(messageText)"
+          (change)="adjustTextareaHeight(messageText)"
+        ></textarea>
+      </div>
+      <div class="actions">
+        <div class="other-content">
+          @if(!isThread){
+            <label
+            for="inputAttachment"
+            class="pointer"
+            (mouseenter)="add_hovered = true"
+            (mouseleave)="deleteHovered()"
+          >
+
+            <input
+              type="file"              
+              (change)="detectFile($event)"
+              accept="image/*,application/pdf"              
+              name="inputAttachment"
+              id="inputAttachment"
+            >
+            
+            @if (add_hovered) {
+              <img src="./assets/img/icon/add_hover.svg"/>
+            } @else {
+              <img src="./assets/img/icon/add.svg"/>
+            }
+          </label>
+          }
+          @else {<label
+            for="inputAttachmentThreat"
+            class="pointer"
+            (mouseenter)="add_hovered = true"
+            (mouseleave)="deleteHovered()"
+          >
+
+            <input
+              type="file"              
+              (change)="detectFile($event)"
+              accept="image/*,application/pdf"              
+              name="inputAttachmentThreat"
+              id="inputAttachmentThreat"
+            >
+            
+            @if (add_hovered) {
+              <img src="./assets/img/icon/add_hover.svg"/>
+            } @else {
+              <img src="./assets/img/icon/add.svg"/>
+            }
+          </label>}
+          
+          @if (this.selectedFiles && !this.maxSizeReached) {
+            @if(this.fileType !== 'application/pdf'){
+              <a target="_blank" href="{{ this.textBoxData.inputField }}"><img class="preview" src="{{ this.textBoxData.inputField }}"/></a>
+            } @else{              
+              <a target="_blank" href="{{ this.textBoxData.inputField }}"><img class="preview" src="./assets/img/icon/pdf.png" alt=""></a>
+            }
+          }
+
+          <div class="vertical-line"></div>
+          @if (smile_hovered) {
+            <img
+              class="pointer"
+              (mouseenter)="smile_hovered = true"
+              (mouseleave)="deleteHovered()"
+              (click)="openEmojiPickerDialog()"
+              src="./assets/img/icon/smile_hover.svg"
+              alt=""
+            />            
+          } @else {
+            <img
+              class="pointer"
+              (mouseenter)="smile_hovered = true"
+              (mouseleave)="deleteHovered()"
+              src="./assets/img/icon/smile.svg"
+              alt=""
+            />
+          }
+          <!-- @if (email_hovered) {
+            <img
+              class="pointer"
+              (mouseenter)="email_hovered = true"
+              (mouseleave)="deleteHovered()"
+              src="./assets/img/icon/email_hover.svg"
+              alt=""
+            />
+          } @else {
+            <img
+              class="pointer"
+              (mouseenter)="email_hovered = true"
+              (mouseleave)="deleteHovered()"
+              src="./assets/img/icon/email.svg"
+              alt=""
+            />
+          } -->
+        </div>
+
+        @if (send_hovered) {
+          <img
+            class="pointer"
+            (click)="onSubmit()"
+            (mouseenter)="send_hovered = true"
+            (touchstart)="onSubmit()"
+            (mouseleave)="deleteHovered()"
+            src="./assets/img/icon/send_hover.svg"
+            alt=""
+          />
+        } @else {
+          <img
+            class="pointer"
+            (click)="onSubmit()"
+            (mouseenter)="send_hovered = true"
+            (touchstart)="onSubmit()"
+            (mouseleave)="deleteHovered()"
+            src="./assets/img/icon/send.svg"
+            alt=""
+          />
+        }
+      </div>
+      @if(maxSizeReached){
+        <div class="error required">
+          Die gewünschte Datei ist zu groß (max. 500KB)
+        </div>
+      }
+    </div>
+  </form>
+  <emoji-mart *ngIf="openEmojiPicker" (emojiClick)="addEmoji($event)"></emoji-mart>
+</div>

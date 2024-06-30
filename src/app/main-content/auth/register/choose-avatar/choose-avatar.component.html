@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-header>
+    <div class="headline">
+      <div class="headline-icon">
+        <mat-icon
+          class="pointer"
+          fontIcon="arrow_back"
+          routerLink="/login"
+          routerLinkActive="router-link-active"
+        ></mat-icon>
+      </div>
+
+      <mat-card-title>Wähle deinen Avatar</mat-card-title>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm" ngNativeValidate>
+      <div class="form-box">
+        <img class="avatar" [src]="currentAvatar" alt="" />
+      </div>
+
+      <div class="form-box">
+        <span class="username">{{ contactData.name }}</span>
+      </div>
+
+      <div class="form-box">
+        <div class="infotext">
+          <span>Choose your avatar....</span>
+        </div>
+      </div>
+
+      <div class="form-box">
+        <div class="avatar-list">
+          @for(count of [1,2,3,4,5,6]; track templateIndex){
+          <div class="selection">
+            <img
+              (click)="setAvatar($event)"
+              class="pointer"
+              src="./assets/img/characters/template{{ count }}.svg"
+              alt=""
+            />
+          </div>
+          }
+        </div>
+
+        <span class="required full-width">
+          @if (chooseAvatar){ Bitte Avatar auswählen. }
+        </span>
+      </div>
+
+      <div class="form-box">
+        <div class="infotext">
+          <span>Or you can</span>          
+          <label for="inputField" class="pointer">Upload foto</label>
+          <input type="file" (change)="detectFile($event)" accept="image/*" name="inputField" id="inputField">
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div class="required">
+          @if(errorMessage){ @switch (errorMessage) { 
+            @case ("auth/email-already-in-use") { E-Mail wird bereits verwendet } 
+            @case ("auth/user-disabled") { Konto inaktiv } 
+            @case ("storage/unauthorized") { Upload fehlgeschlagen }
+          @default { Ungültige
+          Anmeldedaten } } }
+        </div>
+        <button class="btn-primary pointer">Weiter</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div class="bottom-right">
+  @if(confirm){
+  <div class="overlay-animation">
+    <span>Konto erfolgreich erstellt!</span>
+  </div>
+  }
+</div>

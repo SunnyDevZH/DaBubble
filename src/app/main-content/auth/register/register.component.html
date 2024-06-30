@@ -1,0 +1,125 @@
+<div class="content">
+  <div class="logo">
+    <img src="./assets/img/auth/logo.svg" />
+    <span class="logo-name">DABubble</span>
+  </div>
+  
+  @if(!showAvatarComponent){
+  <mat-card>
+    <mat-card-header>
+      <div class="headline">        
+        
+        <div class="headline-icon">
+          <mat-icon class="pointer" fontIcon="arrow_back" routerLink="/login" routerLinkActive="router-link-active"></mat-icon>
+        </div>
+
+        <mat-card-title>Konto erstellen</mat-card-title>
+        <mat-card-subtitle>
+          Mit deinem Namen und deiner E-Mail-Adresse hast du dein neues
+          DABubble-Konto.
+        </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      @if(errorMessage){
+      <div class="required">{{ errorMessage }}</div>
+      }
+
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm" ngNativeValidate>
+        <div class="form-box">
+          <div class="input-with-icon">
+            <input
+              type="text"
+              name="username"
+              #username="ngModel"
+              [(ngModel)]="contactData.name"
+              minlength="3"
+              placeholder="Name und Nachname"
+              required
+            />
+            <img
+              [src]="
+                username.valid || username.touched
+                  ? './assets/img/auth/person_black.svg'
+                  : './assets/img/auth/person.svg'
+              "
+              alt="icon"
+            />
+          </div>
+          <span class="required">
+            @if (!username.valid && username.touched && !username.disabled){
+            Bitte schreiben Sie einen Namen. }
+          </span>
+        </div>
+
+        <div class="form-box">
+          <div class="input-with-icon">
+            <input
+              type="email"
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="contactData.email"              
+              pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
+              placeholder="beispielname@email.com"
+              required
+            />
+            <img
+              [src]="
+                email.valid || email.touched
+                  ? './assets/img/auth/mail_black.svg'
+                  : './assets/img/auth/mail.svg'
+              "
+              alt="icon"
+            />
+          </div>
+          <span class="required">
+            @if (!email.valid && email.touched && !email.disabled){ *Diese
+            E-Mail-Adresse ist leider ungültig. }
+          </span>
+        </div>
+
+        <div class="form-box">
+          <div class="input-with-icon">
+            <input
+              type="password"
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="contactData.password"
+              minlength="6"
+              placeholder="Passwort"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+              required
+            />
+            <img
+              [src]="
+                password.valid || password.touched
+                  ? './assets/img/auth/lock_black.svg'
+                  : './assets/img/auth/lock.svg'
+              "
+              alt="icon"
+            />
+          </div>
+          <span class="required">
+            @if (!password.valid && password.touched && !password.disabled){
+              Das Passwort muss mindestens 6 Zeichen lang sein und eine Zahl, einen Groß- und einen Kleinbuchstaben enthalten. }
+          </span>
+        </div>
+        <div class="buttons">
+          <button class="btn-primary pointer">Weiter</button>          
+        </div>        
+      </form>
+    </mat-card-content>
+  </mat-card>
+    
+  
+  }@else {
+    <app-choose-avatar [contactData]="contactData"
+    
+    [ngStyle]="{'width': isDesktop ? '480px' : '100%'}"
+
+    ></app-choose-avatar>
+  }
+  @if(isDesktop){
+    <app-desktop-footer></app-desktop-footer>
+  }
+</div>

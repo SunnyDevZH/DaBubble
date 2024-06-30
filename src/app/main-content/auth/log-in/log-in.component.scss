@@ -1,0 +1,342 @@
+@import "../../../../styles/mixins.scss";
+
+.content {
+  position: relative;
+  padding: 0 16px;
+  height: 100vh;
+  @include dFlex($jc: center, $ai: center, $fd: column, $g: 30px);
+  animation: contentAnimation 1s ease-in-out 1s forwards;
+}
+
+mat-card {
+  position: relative;
+  @include dFlex($jc: center, $ai: center, $fd: column, $g: 20px);
+  @include card($w: 100%, $h: auto, $br: 30px, $ptb: 35px, $plr: 20px);
+  max-width: 606px;
+
+  .mat-mdc-card-header,
+  .headline {
+    @include dFlex($jc: center, $ai: center, $fd: column, $g: 15px);
+    padding: 0;
+    margin-top: -8px;
+
+    mat-card-title {
+      @include fontBold(
+        $fw: 700,
+        $fs: 1.778rem,
+        $lh: 38.4px,
+        $ta: center,
+        $c: #444df2
+      );
+    }
+
+    mat-card-subtitle {
+      font-family: "Nunito", serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 20.4px;
+      text-align: center;
+      color: #000;
+    }
+  }
+
+  .card-content {
+    padding: 0;
+    @include dFlex($jc: center, $ai: center, $fd: column, $g: 8px);
+    width: 100%;
+
+    form {
+      @include dFlex($jc: center, $ai: center, $fd: column, $g: 8px);
+      width: 100%;
+
+      .form-box {
+        position: relative;
+        width: 100%;
+        @include dFlex(
+          $jc: space-between,
+          $ai: flex-start,
+          $fd: column,
+          $g: 0px
+        );
+
+        .input-with-icon {
+          @include dFlex(
+            $jc: space-between,
+            $ai: flex-start,
+            $fd: row,
+            $g: 30px
+          );
+          width: 100%;
+          position: relative;
+
+          img {
+            position: absolute;
+            left: 25px;
+            top: 25px;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        box-sizing: border-box;
+        padding-block: 0;
+        padding-inline: 0;
+        padding: 15px 70px;
+        background-color: #eceefe;
+        width: 100%;
+        height: 50px;
+        border: 1px transparent solid;
+        text-align: left;
+        color: #686868;
+        font-size: 0.9rem;
+        font-family: "Nunito";
+        font-weight: 500;
+        line-height: 21.6px;
+        border-radius: 100px;
+        cursor: pointer;
+
+        &:hover {
+          border: 1px #686868 solid;
+        }
+        &:focus {
+          border: 1px #535af1 solid;
+          color: #000;
+        }
+        &:valid {
+          color: #000;
+        }
+      }
+    }
+
+    .fontThin {
+      @include fontThin(
+        $fw: 400,
+        $fs: 17px,
+        $lh: 20.4px,
+        $ta: center,
+        $c: #797ef3
+      );
+    }
+
+    .seperator {
+      position: relative;
+      @include dFlex($jc: center, $ai: center, $fd: row, $g: 0);
+      margin: 20px 0;
+    }
+
+    .seperator span {
+      position: absolute;
+      top: -10px;
+      background-color: white;
+      text-align: center;
+      padding: 0 10px;
+      height: 35px;
+      width: 80px;
+      font-family: "Nunito";
+      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 23.19px;
+    }
+
+    .line {
+      width: 100%;
+    }
+  }
+}
+
+.google {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 20px);
+  width: 100%;
+  box-sizing: border-box;
+  padding-block: 0;
+  padding-inline: 0;
+  background-color: #eceefe;
+  height: 50px;
+  border: 1px transparent solid;
+  text-align: left;
+  color: #686868;
+  font-size: 0.9rem;
+  font-family: "Nunito";
+  font-weight: 500;
+  line-height: 21.6px;
+  border-radius: 100px;
+
+  span {
+    color: #444df2;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+
+  .google-img {
+    height: 38px;
+    width: 38px;
+  }
+
+  &:hover {
+    border: 1px solid #444df2;
+  }
+
+  &:active {
+    border: 1px solid #686868;
+  }
+}
+
+.buttons {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 20px);
+  .btn-primary {
+    @include btn(
+      $h: 49px,
+      $br: 25px,
+      $ptb: 12px,
+      $plr: 25px,
+      $c: #fff,
+      $bgc: #444df2,
+      $bgch: #797ef3,
+      $ch: #fff,
+      $fbc: #444df2
+    );
+  }
+  .btn-secondary {
+    @include btn(
+      $h: 49px,
+      $br: 25px,
+      $ptb: 12px,
+      $plr: 25px,
+      $c: #444df2,
+      $bgc: transparent,
+      $bgch: #535af1,
+      $ch: #fff,
+      $fbc: #444df2
+    );
+  }
+
+  span {
+    font-family: "Nunito";
+    font-weight: 400;
+    font-size: 0.9rem;
+    list-style: 24.55px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.intro {
+  background: linear-gradient(#797ef3, #313ae5);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; 
+  z-index: 1;
+  opacity: 0;
+}
+
+.intro-start {
+  animation: introAnimation 4.3s ease-out 0s forwards;
+}
+
+.logo-animated-start {
+  animation: logoAnimation 0.4s ease-out 3.5s forwards;
+
+  img {
+    animation: imgAnimation 3s ease-out 0.6s forwards;
+  }
+
+  .logo-name-animated-start {
+    animation: textAnimation 3s ease-out 1s forwards;
+  }
+}
+
+.logo-animated-desktop-start {
+  animation: logoAnimation 0.4s ease-out 3.5s forwards;
+
+  img {
+    animation: imgAnimation 3s ease-out 0.6s forwards;
+  }
+
+  .logo-name-animated-desktop-start {
+    animation: textAnimation 3s ease-out 1s forwards;
+  }
+}
+
+
+.logo-animated {
+  height: 100vh;
+  width: 100%;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 12.8px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+
+  img {
+    position: absolute;
+    z-index: 5;
+    height: 70px;
+    width: 70px;
+  }
+
+  .logo-name-animated {
+    position: absolute;
+    right: 40%;
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: "Nunito";
+    color: #fff;
+    opacity: 0;
+  }
+}
+
+.logo-animated-desktop {
+  background-color: yellow;
+  height: 100vh;
+  width: 100%;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 12.8px);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+
+  img {
+    position: absolute;
+    z-index: 5;
+    height: 70px;
+    width: 70px;
+  }  
+}
+
+.newDABubble {
+  position: absolute;
+  top: 75px;
+  left: 24px;
+  width: 90%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  span {
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Nunito";
+    font-size: 1rem;
+    font-weight: 400;
+    color: #000;
+  }
+
+  :nth-last-child(1) {
+   color: #797EF3;
+   cursor: pointer;
+   z-index: 7;
+  }
+}

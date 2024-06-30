@@ -1,0 +1,56 @@
+<div class="container">
+  @if(!isDesktop){
+  <app-header-mobile></app-header-mobile>
+  }
+  <div class="mdc-card">
+    <div class="channel-box">
+      <h1 class="no-margin">
+        <span></span>
+        <span>Neue Nachricht</span>
+      </h1>
+      <input
+        type="text"
+        id="input"
+        class="input-field"
+        [(ngModel)]="selectedUserOrChannel"
+        name="selectedUser"
+        placeholder="An: #channel, oder @jemand oder E-Mail Adresse"
+        (input)="onInputChange($event)"
+        autocomplete="off"
+      />
+      <div id="add-member" class="add-member" *ngIf="showAddMember">
+        <div class="scroll">
+          <div *ngIf="showChannels">
+            @for (channel of this.firestore.channelList; track $index) {
+            <div class="selection" (click)="onChannelClick(channel)">
+              <span>{{ channel.name }}</span>
+            </div>
+            }
+          </div>
+          <div *ngIf="showUsers">
+            @for (user of this.firestore.getUsers(); track $index) {
+            <div class="selection" (click)="onUserClick(user)">
+              <span
+                >{{ user.displayName }}
+                <span *ngIf="user.id === this.authService.activeUserId"
+                  >(Du)</span
+                >
+              </span>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @if(this.matchMedia.loading){
+  <div class="loading-animation">
+    <app-progress-spinner></app-progress-spinner>
+  </div>
+  }@else{
+  <div class="content">
+    <div class="message-content" style="overflow-y: scroll; height: 100%"></div>
+  </div>
+  }
+  <app-text-box [textBoxData]="textBoxData" [isThread]="false" [isNewMessage]="false"></app-text-box>
+</div>

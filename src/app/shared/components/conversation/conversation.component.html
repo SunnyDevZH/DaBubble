@@ -1,0 +1,238 @@
+<div
+  class="content-message"
+  [ngStyle]="{ 'flex-direction': isMessageFromYou ? 'row' : 'row-reverse' }"
+  (mouseenter)="hovered = true; toggleReactionBar($event)"
+  (mouseleave)="deleteHovered(); toggleReactionBar($event)"
+>
+  <div class="avatar pointer">
+    <img src="{{ this.user.avatar }}" alt="" />
+  </div>
+  <div
+    class="main"
+    [ngStyle]="{ 'align-items': isMessageFromYou ? 'flex-start' : 'flex-end' }"
+  >
+    <div
+      class="message-content pointer"
+      [ngStyle]="{
+        'align-items': isMessageFromYou ? 'flex-start' : 'flex-end'
+      }"
+    >
+      <div
+        class="creator-infos"
+        [ngStyle]="{
+          'flex-direction': isMessageFromYou ? 'row' : 'row-reverse'
+        }"
+      >
+        <div class="creator" (click)="doNotClose($event)">
+          {{ this.user.displayName }}
+        </div>
+        <div class="time">
+          {{ this.dateFormatService.formatTime(channelMessage.createdAt) }}
+          Uhr
+        </div>
+      </div>
+
+      @if (isMessageFromYou) {
+      <form ngNativeValidate>
+        <textarea
+          class="message text-white"
+          [ngStyle]="{
+            'background-color': hovered ? '#797EF3' : '#797EF3',
+            'border-radius': isMessageFromYou
+              ? '0 30px 30px 30px'
+              : '30px 0 30px 30px'
+          }"
+          [disabled]="isMessageDisabled"
+          id="{{ channelMessage.messageId }}"
+          #messageToEdit
+          minlength="1"
+          required
+          (input)="adjustTextareaHeight(messageToEdit)"
+          (change)="changeMessage(); adjustTextareaHeight(messageToEdit)"
+          >{{ channelMessage.text }}</textarea
+        >
+        @if(!isMessageDisabled){
+        <div class="edit-bar">
+          <div
+            class="buttons"
+            [ngStyle]="{
+              'justify-content': isMessageFromYou ? 'flex-start' : 'flex-end'
+            }"
+          >
+            <button
+              class="btn-secondary pointer"
+              type="button"
+              (click)="doNotClose($event); noChanges()"
+            >
+              Abbrechen
+            </button>
+            <button class="btn-primary pointer" type="submit">Speichern</button>
+          </div>
+        </div>
+        }
+      </form>
+      } @else {
+      <textarea
+        class="message"
+        [ngStyle]="{
+          'background-color': hovered ? '#FFFFFF' : '#ECEEFE',
+          'border-radius': isMessageFromYou
+            ? '0 30px 30px 30px'
+            : '30px 0 30px 30px'
+        }"
+        #messageToEdit
+        [disabled]="true"
+        (input)="adjustTextareaHeight(messageToEdit)"
+        (change)="adjustTextareaHeight(messageToEdit)"
+        >{{ channelMessage.text }} </textarea
+      >
+      } @if (channelMessage.attachment!.length > 0 &&
+      channelMessage.attachment![0] !== '') {
+      <div class="attachment-list">
+        @for (item of channelMessage.attachment; track $index) { @if(item !==
+        'undefined' && item !== '') {
+        @if(channelMessage.attachment![0].includes('.pdf?')){
+        <a href="{{ item }}" target="_blank" title="{{ item | filename }}"
+          ><img class="attachment" src="./assets/img/icon/pdf.png" alt="" />{{
+            item | filename
+          }}</a
+        >
+        }@else {
+        <a href="{{ item }}" target="_blank" title="{{ item | filename }}"
+          ><img class="attachment" src="{{ item }}" alt="Foto"
+        /></a>
+        } } }
+      </div>
+      } @if(channelMessage.threads !== 0 && hideThreadInfos === false){
+      <div
+        class="thread-infos"
+        [ngStyle]="{
+          'flex-direction': isMessageFromYou ? 'row' : 'row-reverse'
+        }"
+      >
+        <span class="answer" (click)="doNotClose($event); openThread()">
+          {{ channelMessage.threads }}
+          @if(channelMessage.threads == 1){ Antwort }@else { Antworten }
+        </span>
+        <span
+          class="last-thread"
+          [ngStyle]="{ color: hovered ? '#000000' : '#686868' }"
+          >Letzte Antwort
+          {{ this.dateFormatService.formatTime(timestampLastThread) }}
+        </span>
+      </div>
+      }
+    </div>
+    @if(channelMessage.reactions.length > 0 && !hideCompleteReactionBar){
+    <div class="reaction-infos" (click)="doNotClose($event)">
+      <div class="reactions">
+        <ng-container
+          *ngFor="let reaction of channelMessage.reactions; let i = index"
+        >
+          @if(getUserReactionCount(reaction.emoji) > 0) {
+
+          <div
+            *ngIf="reaction.emoji"
+            class="reaction-group pointer"
+            (click)="toggleReaction(reaction)"
+            (mouseenter)="setShowBubble(i, true)"
+            (mouseleave)="setShowBubble(i, false)"
+            (touchstart)="handleTouchStart($event, i)"
+            (touchend)="handleTouchEnd($event, i)"
+          >
+            <span class="reaction-icon">{{ reaction.emoji }}</span>
+            <div class="reaction-count">
+              {{ getUserReactionCount(reaction.emoji) }}
+            </div>
+          </div>
+
+          @if(showBubble[i]){
+          <div class="bubble" [ngStyle]="{ 'left.px': getLeftPosition(i) }">
+            <span class="bubble-icon">{{ reaction.emoji }}</span>
+            <span class="bubble-userlist">
+              @for (user of getDisplayNamesWithCurrentUser(reaction.users);
+              track $index) {
+              <span class="bubble-user">
+                {{ user }}
+              </span>
+              }
+            </span>
+            <span class="bubble-text">reagiert</span>
+          </div>
+          } }
+        </ng-container>
+      </div>
+
+      @if(hasReactionsWithUsers()) {
+      <img
+        class="new-reaction pointer"
+        src="./assets/img/emojis/add_reaction.svg"
+        alt=""
+        (click)="openEmojiPicker()"
+      />
+      }
+    </div>
+    }
+  </div>
+
+  @if(!hideCompleteReactionBar){ @if(showReactionBar){
+  <div
+    class="reactionBar"
+    [ngStyle]="{
+      right: isMessageFromYou ? '5%' : 'unset',
+      left: isMessageFromYou ? 'unset' : '5%'
+    }"
+  >
+    @if(this.matchMedia.hideReactionIcons == false){
+    <div class="reaction-icon-small pointer">
+      <img
+        src="./assets/img/emojis/check_mark2.svg"
+        alt=""
+        (click)="addEmojiReaction('✅')"
+      />
+    </div>
+    <div class="reaction-icon-small pointer">
+      <img
+        src="./assets/img/emojis/raised_hands.svg"
+        alt=""
+        (click)="addEmojiReaction('🙌')"
+      />
+    </div>
+    }
+    <img
+      src="./assets/img/emojis/add_reaction.svg"
+      class="pointer"
+      alt=""
+      (click)="openEmojiPicker()"
+    />
+
+    @if(!isMessageFromYou){
+    <img
+      src="./assets/img/emojis/answer.svg"
+      class="pointer"
+      alt=""
+      (click)="openThread()"
+    />
+    } @if(isMessageFromYou){
+    <img
+      src="./assets/img/emojis/answer2.svg"
+      class="pointer"
+      alt=""
+      (click)="toggleEditMessage($event); doNotClose($event)"
+    />
+    }
+  </div>
+  @if(showEditMessage){
+  <div
+    class="editMessageButton"
+    [ngStyle]="{
+      right: isMessageFromYou ? '5%' : 'unset',
+      left: isMessageFromYou ? 'unset' : '5%'
+    }"
+  >
+    <span class="pointer" (click)="editMessage(channelMessage.messageId)">
+      Nachricht bearbeiten
+    </span>
+  </div>
+  } } }
+</div>

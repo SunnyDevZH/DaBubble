@@ -1,0 +1,75 @@
+@mixin dFlex($jc: center, $ai: center, $fd: row, $g: 0px) {
+  display: flex !important;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $fd;
+  gap: $g;
+}
+
+@mixin card($w: 100%, $h: 50%, $br: 30px, $ptb: 35px, $plr: 20px) {
+  width: $w;
+  height: $h;
+  border-radius: $br;
+  padding: $ptb $plr;
+  background-color: #FFF;
+  box-shadow: 0px 2px 10px 0px #00000014;
+}
+
+@mixin fontBold($fw: 700, $fs: 32px, $lh: 38.4px, $ta: center, $c: #444DF2){
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  text-align: $ta;
+  color: $c;
+  font-family: 'Nunito', serif;
+}
+
+@mixin fontThin($fw: 400, $fs: 17px, $lh: 20.4px, $ta: center, $c: #797EF3){
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: $lh;
+  text-align: $ta;
+  color: $c;
+  font-family: 'Figtree', serif;
+  padding: 5px 15px;
+
+  &:hover{
+    background-color: #ECEEFE;
+    color: #444DF2;
+    font-weight: 500;
+    border-radius: 30px;
+  }
+
+}
+
+@mixin bg-c($c) {
+  background-color: $c;
+}
+
+@mixin btn($h, $br, $ptb, $plr, $c, $bgc, $bgch, $ch, $fbc){
+  height: $h;
+  border: 1px solid #444DF2;
+  border-radius: $br;
+  padding: $ptb $plr;
+  color: $c;
+  background-color: $bgc;
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 24.55px;
+
+  &:hover{
+    border: 1px solid $bgch;
+    background-color: $bgch;
+    color: $ch;
+  }
+
+  &:focus{
+    background-color: $fbc;
+  }
+
+  
+}
+@mixin shadow-bottom(){
+  box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,159 @@
+<div class="background">
+  <div class="mdc-card">
+    <div class="channel-header">
+      <h1 class="no-margin"># {{ channel.name }}</h1>
+      <span class="menu-icon-hover pointer">
+        <img
+          src="./assets/img/icon/close.svg"
+          alt=""
+          [id]="itemID"
+          (click)="openChannel($event, 'channel')"
+        />
+      </span>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit('update')" #contactForm="ngForm" ngNativeValidate>
+    <main>
+      <div
+        class="container"
+        [style.border]="
+          !isEditingChannelName ? '1px solid #ADB0D9' : 'none'"
+      >
+      <div class="edit-channel-name">
+        <div class="channel-name">          
+            <span class="text-channel-name">Channel-Name</span>
+            <div class="edit-icon">
+              <span class="menu-icon-hover pointer">
+                @if(!isEditingChannelName){
+                <img
+                  id="edit-icon-channel-name"
+                  src="./assets/img/icon/edit.svg"
+                  (click)="toggleEdit('channelName')"
+                />
+                } @else {
+                <img
+                  id="check-icon-channel-name"
+                  src="./assets/img/icon/check_circle.svg"
+                  (click)="onSubmit('channelName')"
+                />
+                }
+            </span>
+          </div>
+          
+        </div>
+
+          @if(!isEditingChannelName){
+          <p id="description"># {{ channel.name }}</p>
+          }@else {
+          <input
+            name="name"
+            #name="ngModel"
+            id="input-edit-channel-name"
+            class="input-edit"
+            type="text"
+            [(ngModel)]="channelData.name"
+          />
+          }
+
+          <span class="required">
+            @if(channelNameExists){ Fehler: Der Kanalname "{{
+              channelData.name
+            }}" ist bereits vorhanden und kann nicht genutzt werden. }
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="container"
+        [style.border]="!isEditingDescription ? '1px solid #ADB0D9' : 'none'"
+      >
+        <div class="channel-name">
+          <h1>Beschreibung</h1>
+          <div class="edit-icon">
+            <span class="menu-icon-hover pointer">
+              @if(!isEditingDescription){
+              <img
+                id="edit-icon-description"
+                src="./assets/img/icon/edit.svg"
+                (click)="toggleEdit('channelDescription')"
+              />
+              }@else {
+              <img
+                id="check-icon-description"
+                src="./assets/img/icon/check_circle.svg"
+                (click)="onSubmit('channelDescription')"
+              />
+              }
+            </span>
+          </div>
+        </div>
+          @if(!isEditingDescription){
+          <p id="description">{{ channel.description }}</p>
+          }@else {
+          <input
+            name="description"
+            #description="ngModel"
+            id="input-edit-description"
+            class="input-edit"
+            type="text"
+            [(ngModel)]="channelData.description"
+          />
+          }
+          <div class="horizontal-line"></div>
+          <div>
+            <p>Erstellt von</p>
+            <p class="color">{{ user.displayName }}</p>
+          </div>
+        
+        
+      </div>
+      <!-- Mitglieder von Firebase -->
+      <div class="container">
+        <div >
+          <h1>Mitglieder</h1>
+
+          <div *ngFor="let member of filterUsers()">
+            <div class="profil">
+              <img class="img-profil" src="{{ member.avatar }}" alt="" />
+
+              @if(user.isOnline){
+              <img
+                src="./assets/img/characters/online.svg"
+                alt="Online"
+                class="online-avatar"
+              />
+              } @else {
+              <img
+                src="./assets/img/characters/offline.svg"
+                alt="Offline"
+                class="offline-avatar"
+              />
+              }
+
+              <p class="no-margin">{{ member.displayName }}</p>
+            </div>
+          </div>
+
+          <div class="profil" (click)="toggleOverlay('overlay')">
+            <img src="./assets/img/icon/add_member.svg" alt="" />
+            <p class="no-margin">Mitglieder Hinzufügen</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-pos">
+        <button
+          class="add-button"
+          [id]="itemID"
+          (click)="removeMember()"
+        >
+          Channel Verlassen
+        </button>
+      </div>
+      <div class="space"></div>
+      <div id="overlay" class="overlay" style="display: none">
+        <app-search-user></app-search-user>
+      </div>
+    </main>
+  </form>
+</div>

@@ -1,0 +1,149 @@
+<mat-card class="custom-dialog-container">
+    <div class="profil-title">
+        <span>Dein Profil bearbeiten</span>
+        <div class="close-icon" (click)="closeEditProfilCard()">
+            <img
+                ngSrc="./assets/img/icon/close.png"
+                class="default-img"
+                height="24"
+                width="24" />
+            <img
+                ngSrc="./assets/img/icon/close_color.png"
+                class="hover-img"
+                style="display: none"
+                height="16"
+                width="16" />
+        </div>
+    </div>
+
+    <div class="profile-img-container">
+        <label for="editAvatar" class="pointer">
+            <input
+                type="file"
+                (change)="detectAvatar($event)"
+                accept="image/*"
+                name="editAvatar"
+                id="editAvatar" />
+            <img class="profile-img" mat-card-image [src]="data.user.avatar" />
+            <div class="edit-icon">
+                <img src="./assets/img/icon/edit.png" height="24" width="24" />
+            </div>
+        </label>
+    </div>
+
+    <div class="avatar-list">
+        <div *ngFor="let count of [1,2,3,4,5,6]; let i = index; trackBy: trackByFn">
+            <div class="selection">
+                <img
+                    class="pointer"
+                    src="./assets/img/characters/template{{ count }}.svg"
+                    alt=""
+                    (click)="setAvatar($event)" />
+            </div>
+        </div>
+    </div>
+
+    <mat-card-content>
+        <div class="email-field">
+            <img
+                ngSrc="./assets/img/icon/account_circle_big.png"
+                height="26"
+                width="26" />
+            <span>Vollständiger Name</span>
+        </div>
+        <div class="input-field">
+            <input
+                type="text"
+                name="name"
+                [(ngModel)]="nameData.name"
+                [formControl]="nameControl"
+                (ngModelChange)="checkInput($event)"
+                (focus)="onFocus()"
+                placeholder="{{ data.user.displayName }}"
+                required
+                class="full-width input-field-design" />
+            <div
+                *ngIf="
+                    nameControl.invalid &&
+                    (nameControl.dirty || nameControl.touched)
+                "
+                class="error">
+                Bitte mindestens 5 Buchstaben eingeben.
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-content>
+        <div>
+            <div class="email-field">
+                <img
+                    ngSrc="./assets/img/icon/mail.png"
+                    height="20"
+                    width="26" />
+                <span>E-Mail-Adresse</span>
+            </div>
+            <div class="input-field">
+                <input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="emailData.email"
+                    [formControl]="emailControl"
+                    (ngModelChange)="onEmailChange($event)"
+                    (focus)="onFocus()"
+                    [class.input-has-value]="inputHasValue"
+                    placeholder="{{ data.user.email }}"
+                    required
+                    class="full-width input-field-design" />
+                <div
+                    *ngIf="
+                        emailControl.invalid &&
+                        (emailControl.dirty || emailControl.touched)
+                    "
+                    class="error">
+                    Bitte eine gültige E-Mail-Adresse eingeben.
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-content *ngIf="showPasswordField">
+        <div>
+            <div class="email-field">
+                <img
+                    ngSrc="./assets/img/icon/lock.png"
+                    height="20"
+                    width="26" />
+                <span>Aktuelles Passwort</span>
+            </div>
+            <div class="input-field">
+                <input
+                    type="password"
+                    name="currentPassword"
+                    [(ngModel)]="passwordData.password"
+                    [formControl]="passwordControl"
+                    placeholder="Aktuelles Passwort"
+                    required
+                    class="full-width input-field-design" />
+                <div
+                    *ngIf="
+                        passwordControl.invalid &&
+                        (passwordControl.dirty || passwordControl.touched)
+                    "
+                    class="error">
+                    Bitte geben Sie Ihr aktuelles Passwort ein.
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="btn-position">
+            <button
+                mat-stroked-button
+                class="btn-stroked"
+                (click)="closeEditProfilCard()">
+                Abbrechen
+            </button>
+            <button mat-flat-button class="btn-flat" (click)="saveProfile()" [disabled]="showPasswordField && passwordControl.invalid">
+                Speichern
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>

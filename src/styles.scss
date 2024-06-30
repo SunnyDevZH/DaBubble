@@ -1,0 +1,194 @@
+@import "./styles/mixins.scss";
+@import "./styles/animations.scss";
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  background-color: #ECEEFE;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', serif !important;
+  font-size: 18px;
+  overflow: hidden;
+  @include dFlex($jc: center, $ai: center, $fd: column, $g: 0px);
+  background-color: #ECEEFE;
+  height: 100%;
+}
+
+/* nunito-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/nunito-v26-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* nunito-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./assets/fonts/nunito-v26-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* nunito-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/nunito-v26-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* figtree-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/figtree-v5-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./assets/fonts/figtree-v5-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/figtree-v5-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+app-root{
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  // overflow-x: hidden;
+  // overflow-y: visible;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-bottom-sheet-container {
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+}
+
+//.mat-dialog-container .mat-mdc-dialog-surface .mdc-dialog__surface {
+//  border-radius: 24px;
+//}
+//
+//.mdc-dialog__container {
+//  border-radius: 24px !important;
+//}
+//
+//.mat-dialog-container {
+//  border-radius: 24px !important;
+//}
+
+.mat-mdc-dialog-container {
+  border-radius: 30px;
+  overflow: hidden;
+  //border: red 1px solid;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+// .mat-mdc-card-content {
+//   padding-left: 0 !important;
+// }
+
+.mat-mdc-card-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.required {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.8px;
+  color: #ed1e79;
+  height: 17px;
+  font-family: "Nunito", serif;
+  margin-top: 4px;
+}
+
+.bottom-right{
+  height: 70px;
+  margin-top: 8px;
+  @include dFlex($jc: flex-end, $ai: center, $fd: row, $g: 0px);
+  width: 100%;
+}
+
+.overlay-animation {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 18px);
+  border-radius: 30px 30px 0 30px;
+  padding: 20px 30px;
+  transform: translateX(800%);
+  opacity: 0;
+  animation: slideFromRight 0.8s ease-in-out 0.2s forwards;
+  background-color: #444DF2;
+  font-family: 'Nunito';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30.01px;
+  color: #FFF;
+}
+
+.logo{
+  height: 56px;
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 12.8px);
+  justify-content: flex-start;
+
+  img {
+    height: 56px;
+    width: 56px;
+  }
+
+  .logo-name{
+    font-size: 2.2rem;
+    font-weight: 700;
+    font-family: 'Nunito';
+  }
+}
+
+:root {
+  --mdc-snackbar-container-color: transparent; /* Ändern Sie dies, um die Hintergrundfarbe anzupassen */
+}
+
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: var(--mdc-snackbar-container-color) !important;
+}
+
+*{  
+  scrollbar-color: #797EF3;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #797EF3;
+  border-radius: 2px;  
+}
+
+::-webkit-scrollbar-track {
+  background-color: #00000000;
+  border: 1px solid #00000000;
+}

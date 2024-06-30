@@ -1,0 +1,268 @@
+@import "../../styles/mixins.scss";
+
+::ng-deep html {
+  background-color: #ffffff;
+}
+
+.bg-c {
+  @include bg-c(#ffffff);
+  height: 100%;
+}
+
+.content-main {
+  max-height: calc(100vh - 80px);
+  padding: 30px 16px;
+  overflow-y: auto;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.channel-menu {
+  @include dFlex($ai: center, $fd: row);
+  width: 100%;
+  //padding-left: 16px;
+
+  .plus-icon:hover {
+    background-color: #eceefe;
+    border-radius: 100%;
+  }
+}
+
+.channel-headline {
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 0);
+  width: 100%;
+}
+
+.jc-sb {
+  display: flex;
+}
+
+.channel-menu-headline {
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 10px);
+  width: 100%;
+
+  span {
+    font-weight: 700;
+    font-size: 1.111rem;
+  }
+}
+
+.nothingFound {
+  font-weight: 400;
+  font-size: 0.778rem;
+  line-height: 16.8px;
+  color: #ed1e79;
+  height: 17px;
+  font-family: "Nunito", serif;
+  margin-top: 4px;
+}
+
+mat-expansion-panel {
+  overflow: hidden;
+}
+
+.mat-content.mat-content-hide-toggle{
+  margin: 0 !important;
+}
+
+.hide-overflow {
+  overflow: hidden !important;
+}
+
+/* mat-expansion-panel {
+  &.no-overflow {
+    overflow: hidden;
+  }
+
+  &.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+} */
+
+/* mat-expansion-panel {
+  &.hide-scrollbar {
+    scrollbar-width: 0;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+} */
+
+.mat-expansion-panel-body{
+  padding: 0;
+}
+
+mat-expansion-panel:last-child {
+  margin-bottom: 110px !important;
+}
+
+.user-name,
+.channel-name {
+  padding: 5px;
+  position: relative;
+  cursor: pointer;
+
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 16px);
+
+  &:hover {
+    background-color: #eceefe;
+    border-radius: 20px;
+  }
+
+  span {
+    @include fontBold(
+      $fw: 400,
+      $fs: 17px,
+      $lh: 23.19px,
+      $ta: left,
+      $c: #000000
+    );
+  }
+
+  img {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  .online-avatar,
+  .offline-avatar {
+    position: absolute;
+    bottom: 4px;
+    left: 42px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.selected-menu-item {
+  background-color: #eceefe;
+  border-radius: 20px;
+}
+
+.pf {
+  @include dFlex($jc: center, $ai: center, $fd: row, $g: 6px);
+  img:first-child{
+    border: 2px solid #eceefe;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: 5px;
+}
+
+.pop-up {
+  background-color: rgba(221, 1, 1, 0.7);
+  height: 20px;
+  padding: 3px;  
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.pop-up-color {
+  color: white;
+}
+
+.user-tag,
+.channel-tag {
+  font-size: 1.333rem !important;
+  font-weight: bold !important;
+  font-family: "Nunito", serif;
+}
+
+.bs-none {
+  box-shadow: none !important;
+}
+
+.d-none {
+  display: none;
+}
+
+.add-channel {
+  @include dFlex($jc: start, $ai: center, $fd: row, $g: 12px);
+  padding: 10px 5px;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #eceefe;
+    border-radius: 20px;
+  }
+
+  span {
+    @include fontBold(
+      $fw: 400,
+      $fs: 17px,
+      $lh: 23.19px,
+      $ta: center,
+      $c: #535af1
+    );
+  }
+}
+
+.pl-7 {
+  padding-left: 23px;
+}
+
+//.btn-position {
+//  position: relative;
+//}
+
+.btn-edit-message {
+  @include bg-c(#444df2);
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: none;
+  position: absolute;
+  right: 16px;
+  bottom: 20px;
+  fill: #ffffff;
+}
+
+.white-icon {
+  color: white;
+}
+
+// .scrollable-panel-content {
+//   padding-bottom: 64px
+// }
+
+//DESKTOP/////
+
+@media (min-width: 993px) {
+  .content-main {
+    padding: unset;
+    margin-top: 16px;
+  }
+
+  .btn-edit-message {
+    position: absolute;
+    right: 16px;
+    top: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  mat-expansion-panel:last-child {
+    margin-bottom: 10px !important;
+  }
+
+}

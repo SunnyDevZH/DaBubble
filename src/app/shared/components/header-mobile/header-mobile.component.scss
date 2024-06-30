@@ -1,0 +1,52 @@
+@import "../../../../styles/mixins.scss";
+
+.content-header-mobile {
+  height: 80px;
+  padding: 0 0 0 16px;
+  @include dFlex($jc: space-around, $ai: center, $fd: row, $g: 20px);
+
+  &:hover {
+    cursor: pointer;
+    color: #797ef3;
+  }
+}
+
+.bg-c {
+  @include bg-c(#ECEEFE);
+}
+
+.logo-header {
+  @include dFlex( $ai: center, $fd: row, $g: 8px);
+}
+
+.logo-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.header-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.alternative-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+app-desktop-overlay{
+  position: absolute;
+  top: 80px;
+  right: 305px;
+}
+
+@media (min-width: 431px) {
+  .content-header-mobile {
+    // justify-content: space-between !important;
+    text-align: right;
+    padding-right: 8px;
+  }
+}

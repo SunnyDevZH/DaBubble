@@ -1,0 +1,155 @@
+@import "../../../../styles/mixins.scss";
+
+#toggleDiv {
+  transition: transform 0.5s ease, width 0.5s ease;
+  max-width: 19.06%;
+  width: 100%;
+}
+
+.collapsed {
+  margin-top: 220px;
+  width: 0px !important;
+  height: 100px !important;
+
+  img {
+    display: none;
+  }
+}
+
+.content {
+  @include dFlex($jc: center, $ai: flex-start, $fd: row, $g: 20px);
+  padding: 0 20px 20px;
+  box-sizing: border-box;
+  background-color: #eceefe;
+}
+
+.mat-mdc-card-content {
+  padding-top: 28px;
+}
+
+.menu,
+.workspace,
+.thread {
+  border-radius: 30px;
+  padding: 8px;
+}
+
+.menu {
+  height: calc(100vh - 150px);
+  overflow: hidden;
+}
+
+.test {
+  height: calc(100vh - 200px);
+}
+
+.workspace,
+.thread {
+  height: calc(100vh - 150px);
+  flex: 1;
+}
+
+.thread {
+  width: 100%;
+  max-width: 25.26%;
+  min-width: 342px;
+}
+
+.logo {
+  width: 100%;
+  @include dFlex($jc: space-between, $ai: center, $fd: row, $g: 0);
+
+  div {
+    @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 15px);
+
+    .workspace-logo {
+      height: 60px;
+    }
+
+    span {
+      font-family: Nunito;
+      font-size: 1.333rem;
+      font-weight: 700;
+      line-height: 32.74px;
+      text-align: left;
+      color: #000000;
+    }
+  }
+  .workspace-action-button {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    &:hover {
+      background: #eceefe;
+      border-radius: 50%;
+    }
+  }
+}
+
+app-header-mobile {
+  display: none !important;
+}
+
+.workspace-menu {
+  @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 10px);
+  background-color: #ffffff;
+  padding: 23px 14px;
+  height: 60px;
+  top: 50%;
+  position: absolute;
+  transform: rotate(-90deg);
+  z-index: 99;
+  border-radius: 0px 0px 30px 30px;
+  border-style: none;
+  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.2);
+
+  font-family: Nunito;
+  font-size: 1.111rem;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000000;
+
+  &:hover {
+    font-weight: 700;
+    color: #535af1;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  img {
+    transform: rotate(90deg);
+  }
+}
+
+.welcome {
+  height: 80vh;
+  @include dFlex($jc: center, $ai: center, $fd: column, $g: 24px);
+  .headline {
+    font-family: Nunito;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 32.74px;
+    text-align: left;
+    color: #444df2;
+  }
+
+  .description{
+    @include dFlex($jc: flex-start, $ai: center, $fd: column, $g: 10px);
+    font-family: Nunito;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 32.74px;
+    text-align: left;
+    color: #000000;
+  }
+
+  .tools{
+    @include dFlex($jc: flex-start, $ai: center, $fd: row, $g: 40px);
+    div{
+      @include dFlex($jc: flex-start, $ai: center, $fd: column, $g: 16px);
+    }
+  }
+
+}

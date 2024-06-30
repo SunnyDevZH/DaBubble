@@ -1,0 +1,100 @@
+<div class="container">
+  <app-header-mobile></app-header-mobile>
+
+  <div class="mdc-card">
+    <div class="channel-box" (click)="openDirectMessageOverlay()">
+      <img class="profile" src="{{ user.avatar }}" alt="" />
+      @if(user.isOnline){
+      <img
+        src="./assets/img/characters/online.svg"
+        alt="Online"
+        class="online-avatar"
+      />
+      }@else {
+      <img
+        src="./assets/img/characters/offline.svg"
+        alt="Offline"
+        class="offline-avatar"
+      />
+      }
+      <h1 class="no-margin">
+        {{ user.displayName }}
+        @if(itemID === this.authService.activeUserId){ (Du) }
+      </h1>
+    </div>
+  </div>
+
+  @if(this.matchMedia.loading){
+    <div class="loading-animation">
+      <app-progress-spinner></app-progress-spinner>
+    </div>
+    }@else{
+  <div class="content">
+    <div
+      class="message-content"
+      #messageContent
+      style="overflow-y: scroll; height: 100%">
+      @if (this.firestore.channelMessages.length !== 0) {
+        @for 
+      (channelMessage of this.firestore.channelMessages; let i = $index; 
+      track channelMessage.id) { @if(i === 0 ||
+      (this.dateFormatService.formatDateYYYYMMDD(channelMessage.createdAt) 
+      !==
+      this.dateFormatService.formatDateYYYYMMDD(firestore.channelMessages[i 
+      - 1].createdAt))){
+      <app-time-seperator
+        [seperatorDate]="channelMessage.createdAt"></app-time-seperator>
+      }
+      <app-conversation
+        [channelMessage]="channelMessage"
+        [isChannel]="true"
+        [isThread]="false"
+        [isDirectMessage]="true"
+      ></app-conversation>
+      }}
+    </div>
+  </div>
+}
+  @if (this.firestore.channelMessages.length === 0) {
+  <div class="channel-info">
+    <div class="profile-box" (click)="openDirectMessageOverlay()">
+      <img class="profile" src="{{ user.avatar }}" alt="" />
+      <h1 class="no-margin">
+        {{ user.displayName }}
+
+        @if(itemID === this.authService.activeUserId){ (Du) }
+      </h1>
+    </div>
+
+    <div class="profile-box-info">
+      @if(itemID === this.authService.activeUserId){
+      <span class="text-sender">Dieser Raum ist nur für dich da. </span>
+      <span class="text-default"
+        >Mache dir Notizen, liste deine To-dos auf oder bewahre Links und
+        Dateien griffbereit auf. Du kannst hier auch gerne Dinge mit dir selbst
+        besprechen.</span
+      >
+      }@else {
+      <span class="text-default">Diese Unterhaltung findet nur zwischen </span>
+      <span class="text-recipient">{{ "@" }}{{ user.displayName }} </span>
+      <span class="text-default">und dir statt.</span>
+      }
+    </div>
+  </div>
+  }
+
+  <app-text-box [textBoxData]="textBoxData" [isThread]="false"></app-text-box>
+
+  <div id="overlay3" class="overlay" (click)="closeOverlay('overlay3')">
+    <div class="overlay-profil">
+      <div class="profile-icon">
+        <img src="./assets/img/icon/account_circle.svg" alt="" />
+        <p class="no-margin">Profil</p>
+      </div>
+      <div class="profile-icon">
+        <img src="./assets/img/icon/logout.svg" alt="" />
+        <p class="no-margin">Log out</p>
+      </div>
+    </div>
+  </div>
+</div>

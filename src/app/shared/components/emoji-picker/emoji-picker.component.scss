@@ -1,0 +1,28 @@
+::ng-deep mat-dialog-container {
+  border: 2px solid #444DF2;
+  border-radius: 30px 0 30px 30px;
+}
+
+::ng-deep .emoji-mart-anchors {
+  display: none;
+}
+
+emoji-mart {
+  padding: 8px;
+}
+
+::ng-deep .emoji-mart {
+  max-width: 100%;
+  //border-radius: 8px;
+  padding: 8px;
+  //background-color: #f9f9f9;
+  //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .emoji-mart-bar {
+  background-color: #ffffff;
+}
+
+::ng-deep .emoji-mart-emoji:hover {
+  background-color: #eaeaea;
+}
