@@ -87,14 +87,14 @@ export class DataService {
         }
     }
 
-    containsPartialUserValue(searchValue: string) {
+    /*containsPartialUserValue(searchValue: string) {
         if (this.userMatches) {
             return this.userMatches.some(
                 (item: { displayName: string | string[] }) =>
                     item.displayName.includes(searchValue)
             );
         }
-    }
+    }*/
 
     containsPartialMessageValue(searchValue: string) {
       if (this.messageMatches) {
