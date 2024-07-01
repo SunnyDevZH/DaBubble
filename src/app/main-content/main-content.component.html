@@ -197,7 +197,7 @@
 
         @for (user of this.firestore.userList; track $index) { @if(user.id !==
         authService.activeUserId){
-        @if(this.dataService.containsPartialUserValue(user.displayName)){
+        
         <div
           class="user-name"
           [ngClass]="
@@ -239,7 +239,7 @@
             </span>
           </div>
         </div>
-        } } } @if(this.dataService.userMatches == 0){
+         } } @if(this.dataService.userMatches == 0){
         <div class="nothingFound">
           <span class="user-tag"></span>
           <span>Kein User gefunden</span>
