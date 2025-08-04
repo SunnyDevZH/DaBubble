@@ -75,11 +75,11 @@ import {
   ɵɵlistener,
   ɵɵtemplate
 } from "./chunk-PQ4ACPVX.js";
+import "./chunk-KWBPU7EF.js";
 import {
   defer,
   merge
 } from "./chunk-PWORDH67.js";
-import "./chunk-KWBPU7EF.js";
 import {
   Subject,
   filter,

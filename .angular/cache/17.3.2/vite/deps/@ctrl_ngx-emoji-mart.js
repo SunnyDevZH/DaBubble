@@ -70,10 +70,10 @@ import {
   ɵɵtwoWayProperty,
   ɵɵviewQuery
 } from "./chunk-PQ4ACPVX.js";
+import "./chunk-KWBPU7EF.js";
 import {
   fromEvent
 } from "./chunk-PWORDH67.js";
-import "./chunk-KWBPU7EF.js";
 import {
   EMPTY,
   Subject,

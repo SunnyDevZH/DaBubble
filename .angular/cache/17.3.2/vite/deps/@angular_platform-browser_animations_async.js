@@ -19,8 +19,8 @@ import {
   ɵɵdefineInjectable,
   ɵɵinvalidFactory
 } from "./chunk-PQ4ACPVX.js";
-import "./chunk-PWORDH67.js";
 import "./chunk-KWBPU7EF.js";
+import "./chunk-PWORDH67.js";
 import "./chunk-AQUUAMGA.js";
 import "./chunk-LHRTKJE6.js";
 import "./chunk-LJ4VCL4A.js";
@@ -51,7 +51,7 @@ var _AsyncAnimationRendererFactory = class _AsyncAnimationRendererFactory {
    * @internal
    */
   loadImpl() {
-    const moduleImpl = this.moduleImpl ?? import("./browser-CWQJ2NQU.js");
+    const moduleImpl = this.moduleImpl ?? import("./browser-K7B5Z5EK.js");
     return moduleImpl.catch((e) => {
       throw new RuntimeError(5300, (typeof ngDevMode === "undefined" || ngDevMode) && "Async loading for animations package was enabled, but loading failed. Angular falls back to using regular rendering. No animations will be displayed and their styles won't be applied.");
     }).then(({

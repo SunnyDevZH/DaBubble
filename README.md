@@ -1,27 +1,52 @@
-# Dabubble Group
+# DA-Bubble Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+Dies ist das Frontend für das **DA-Bubble-Projekt**. Die Anwendung basiert auf Angular und kommuniziert mit Firebase für Authentifizierung und Datenspeicherung.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Funktionen
 
-## Code scaffolding
+- Benutzerregistrierung und Login
+- Echtzeit-Chat zwischen Nutzern
+- Verwaltung von Gruppen und Nachrichten
+- Responsive Design für Desktop und Mobile
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Technologie
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular**
+- **TypeScript**
+- **Firebase**
+- **HTML & CSS**
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ⚙️ Installation
 
-## Running end-to-end tests
+### 1. Repository klonen
+```bash
+git clone https://github.com/dein-benutzername/DA-Bubble
+```
+```bash
+cd DA-Bubble
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 2. Abhängigkeiten installieren
+```bash
+npm install
+```
 
-## Further help
+### 3. Entwicklungsserver starten
+```bash
+ng serve
+```
+```bash
+Öffne `http://localhost:4200/` im Browser.
+```
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## ℹ️ Weitere Hinweise
+
+- Für die Backend-Nutzung ist ein Firebase-Projekt erforderlich. Trage deine Firebase-Konfiguration in `src/app/environment.ts` ein.
+
