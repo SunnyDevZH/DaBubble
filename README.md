@@ -26,7 +26,7 @@ Dies ist das Frontend für das **DA-Bubble-Projekt**. Die Anwendung basiert auf 
 
 ### 1. Repository klonen
 ```bash
-git clone https://github.com/dein-benutzername/DA-Bubble
+git clone https://github.com/SunnyDevZH/DaBubble
 ```
 ```bash
 cd DA-Bubble
